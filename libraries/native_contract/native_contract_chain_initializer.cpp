@@ -71,7 +71,9 @@ std::vector<chain::Message> native_contract_chain_initializer::prepare_database(
             types::Abi eos_abi;
             eos_abi.types.push_back( types::TypeDef{"AccountName","Name"} );
             eos_abi.actions.push_back( types::Action{Name("transfer"), "transfer"} );
+            eos_abi.actions.push_back( types::Action{Name("newaccount"), "newaccount"} );
             eos_abi.structs.push_back( eos::types::GetStruct<eos::types::transfer>::type() );
+            eos_abi.structs.push_back( eos::types::GetStruct<eos::types::newaccount>::type() );
             a.set_abi(eos_abi);
          }
       });

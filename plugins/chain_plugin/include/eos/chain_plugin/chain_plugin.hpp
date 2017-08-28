@@ -205,7 +205,8 @@ public:
    using push_block_results = empty;
    push_block_results push_block(const push_block_params& params);
 
-   using push_transaction_params = chain::SignedTransaction;
+   // fc::variant_object instead of chain::SignedTransaction so that SignedTransaction.messages.data can be json
+   using push_transaction_params = fc::variant_object;
    struct push_transaction_results {
       chain::transaction_id_type  transaction_id;
       fc::variant                 processed;

@@ -263,9 +263,10 @@ read_write::push_block_results read_write::push_block(const read_write::push_blo
 }
 
 read_write::push_transaction_results read_write::push_transaction(const read_write::push_transaction_params& params) {
-   auto ptrx = db.push_transaction(params, skip_flags);
+   auto pretty_input = db.transaction_from_variant( params );
+   auto ptrx = db.push_transaction(pretty_input, skip_flags);
    auto pretty_trx = db.transaction_to_variant( ptrx );
-   return read_write::push_transaction_results{ params.id(), pretty_trx };
+   return read_write::push_transaction_results{ pretty_input.id(), pretty_trx };
 }
 
 read_only::get_account_results read_only::get_account( const get_account_params& params )const {
